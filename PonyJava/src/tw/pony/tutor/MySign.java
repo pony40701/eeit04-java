@@ -18,7 +18,7 @@ import tw.pony.apis.MyDrwaer;
 
 public class MySign extends JFrame{
 	private MyDrwaer myDrwaer;
-	private JButton clear, undo, redo, chColor, saveObj, loadObj;
+	private JButton clear, undo, redo, chColor, saveObj, loadObj,saveJPG;
 	
 	public MySign() {
 		super("Sign App");
@@ -30,6 +30,7 @@ public class MySign extends JFrame{
 		chColor = new JButton("Color");
 		saveObj = new JButton("Save");
 		loadObj = new JButton("Load");
+		saveJPG = new JButton("Save to Jpg");
 		
 		myDrwaer = new MyDrwaer();
 		add(myDrwaer, BorderLayout.CENTER);
@@ -37,7 +38,7 @@ public class MySign extends JFrame{
 		JPanel top = new JPanel(new FlowLayout());
 		top.add(clear); top.add(undo); top.add(redo);
 		top.add(chColor);top.add(saveObj);top.add(loadObj); 
-		
+		top.add(saveJPG); 
 		add(top, BorderLayout.NORTH);
 		
 		
@@ -77,6 +78,17 @@ public class MySign extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				saveObj();
 			}
+		});
+		saveJPG.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				try {
+				myDrwaer.saveJPEG();
+				}catch (Exception e1) {
+					System.out.println(e1);
+				}
+				}
 		});
 		loadObj.addActionListener(new ActionListener() {
 			@Override
