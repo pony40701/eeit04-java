@@ -2,10 +2,11 @@
 package tw.pony.apis;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Line2 {
+public class Line2 implements Serializable{
 	private ArrayList<HashMap<String, Integer>> points;
 	private Color color;
 	
