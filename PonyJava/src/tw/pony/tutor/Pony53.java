@@ -1,5 +1,6 @@
 package tw.pony.tutor;
 
+import java.io.FileOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -9,7 +10,7 @@ import java.nio.charset.Charset;
 public class Pony53 {
 
 	public static void main(String[] args) {
-		String mesg = "永支謝欣達";
+		String mesg = "永支4號謝欣達";	
 		byte[] data = mesg.getBytes();
 		try{
 			DatagramSocket socket = new DatagramSocket();
