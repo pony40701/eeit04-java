@@ -23,9 +23,9 @@ public class Pony60 {
 			StringBuffer mesg = new StringBuffer();
 			while ((line = br.readLine()) != null) {
 				mesg.append(line);
-				
+
 			}
-			
+
 			br.close();
 //			conn.disconnect();
 //			
@@ -36,15 +36,16 @@ public class Pony60 {
 			e.printStackTrace();
 		}
 	}
+
 	static void parseJSON(String json) {
 		JSONArray root = new JSONArray(json);
 		System.out.println(root.length());
-		for (int i=0 ; i<root.length();i++) {
+		for (int i = 0; i < root.length(); i++) {
 			JSONObject row = root.getJSONObject(i);
 			String name = row.getString("Name");
 			String tel = row.getString("Tel");
-			System.out.println(name+ ":" +tel);
-			
+			System.out.println(name + ":" + tel);
+
 		}
 	}
 }
