@@ -14,12 +14,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import tw.pony.apis.MyClock;
 import tw.pony.apis.MyDrwaer;
 
 public class MySign extends JFrame{
 	private MyDrwaer myDrwaer;
 	private JButton clear, undo, redo, chColor, saveObj, loadObj,saveJPG;
-	
+	private MyClock myClock;	
 	public MySign() {
 		super("Sign App");
 		setLayout(new BorderLayout());
@@ -31,6 +32,7 @@ public class MySign extends JFrame{
 		saveObj = new JButton("Save");
 		loadObj = new JButton("Load");
 		saveJPG = new JButton("Save to Jpg");
+		myClock = new MyClock();
 		
 		myDrwaer = new MyDrwaer();
 		add(myDrwaer, BorderLayout.CENTER);
@@ -39,7 +41,7 @@ public class MySign extends JFrame{
 		top.add(clear); top.add(undo); top.add(redo);
 		top.add(chColor);top.add(saveObj);top.add(loadObj); 
 		top.add(saveJPG); 
-		add(top, BorderLayout.NORTH);
+		add(top, BorderLayout.NORTH);top.add(myClock);
 		
 		
 		setSize(800,480);
