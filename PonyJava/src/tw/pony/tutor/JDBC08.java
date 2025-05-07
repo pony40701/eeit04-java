@@ -7,6 +7,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.Properties;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,8 +53,18 @@ public class JDBC08 {
 		Properties prop = new Properties();
 		prop.put("user", USER);
 		prop.put("password", PASSWD);
-		try (Connection conn = DriverManager.getConnection(URL, prop);) {
+		
+		try (Connection conn = DriverManager.getConnection(URL, prop)) {
+			String delAll = "DELETE FROM gift";
+			Statement stmt = conn.createStatement();
+			stmt.execute(delAll);
+			
+			String zero = "ALTER TABLE gift AUTO_INCREMENT = 1";
+			stmt.execute(zero);
+			
+			
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			
 			JSONArray root = new JSONArray(json);
 			for (int i = 0; i < root.length(); i++) {
 				JSONObject row = root.getJSONObject(i);
