@@ -1,9 +1,9 @@
-//登入
 package tw.pony.tutor;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,8 +14,9 @@ import java.util.Properties;
 import java.util.Scanner;
 
 import tw.pony.apis.BCrypt;
+import tw.pony.apis.Bike;
 
-public class JDBC14 {
+public class JDBC16 {
 	private static final String URL = "jdbc:mysql://localhost/brad"; 
 	private static final String USER = "root";
 	private static final String PASSWD = "root";
@@ -30,30 +31,16 @@ public class JDBC14 {
 		try {
 			conn = DriverManager.getConnection(URL, prop);
 			PreparedStatement pstmt = conn.prepareStatement(QUERY);
-			pstmt.setInt(1, 3);
+			pstmt.setInt(1, 2);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
-				String account = rs.getString("account");
-				InputStream in = rs.getBinaryStream("icon");
-				new Thread(){
-					public void run() {
-						try {
-							String filename = String.format("dir2/%s.png", account);
-							FileOutputStream fout = new FileOutputStream(filename);
-							
-							byte[] buf = new byte[128*1024]; 
-							int len = in.read(buf);
-							
-							fout.write(buf, 0, len);
-							fout.flush();
-							fout.close();
-							System.out.println("OK");
-						}catch(Exception e) {
-							System.out.println(e);
-						}
-					}
-				}.start();
-				System.out.println("Writing...");
+				InputStream in = rs.getBinaryStream("bike");
+				//---------
+				ObjectInputStream oin = new ObjectInputStream(in);
+				Object obj = oin.readObject();
+				Bike b1 = (Bike)obj;
+				System.out.println(b1);
+						
 			}
 			
 		}catch(Exception e) {
